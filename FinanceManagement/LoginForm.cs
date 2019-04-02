@@ -21,5 +21,11 @@ namespace FinanceManagement
         {
 
         }
+
+        private void Register(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            RegisterForm rf = new RegisterForm();
+            rf.Show();
+        }
     }
 }
