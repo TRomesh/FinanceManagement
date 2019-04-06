@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FinanceManagement
 {
-    class Income
+    public class Income
     {
         public int Id { get; set; }
         public float Amount { get; set; }

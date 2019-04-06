@@ -48,7 +48,7 @@ namespace FinanceManagement
                 
                 combo1[count] = new ComboBox();
                 combo1[count].Top = cLeft * 25;
-               // combo1[count].Left = 100;
+                //combo1[count].Left = 100;
                 for (int i = 1; i <= 5; i++)
                     combo1[count].Items.Add("Item " + i);
                 rtext1[count] = new RichTextBox();

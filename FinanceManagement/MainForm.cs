@@ -22,5 +22,12 @@ namespace FinanceManagement
             ExpenseForm epxf = new ExpenseForm();
             epxf.Show();
         }
+
+        private void Income(object sender, EventArgs e)
+        {
+
+                IncomeForm inxf = new IncomeForm();
+            inxf.Show();
+        }
     }
 }
