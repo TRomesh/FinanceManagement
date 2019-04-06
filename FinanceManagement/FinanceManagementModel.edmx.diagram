@@ -6,6 +6,14 @@
     <edmx:Diagrams>
       <Diagram DiagramId="2674f664ba4c4215a9d2737b14a0ca32" Name="Diagram1" >
         <EntityTypeShape EntityType="FinanceManagementModel.User" Width="1.5" PointX="0.5" PointY="0.5" />
+        <EntityTypeShape EntityType="FinanceManagementModel.Contact" Width="1.5" PointX="4.875" PointY="0.5" />
+        <AssociationConnector Association="FinanceManagementModel.UserContact" />
+        <EntityTypeShape EntityType="FinanceManagementModel.Events" Width="1.5" PointX="2.875" PointY="3.625" />
+        <AssociationConnector Association="FinanceManagementModel.EventsUser" />
+        <EntityTypeShape EntityType="FinanceManagementModel.Appointment" Width="1.5" PointX="1.25" PointY="6" />
+        <EntityTypeShape EntityType="FinanceManagementModel.Task" Width="1.5" PointX="4.875" PointY="6" />
+        <InheritanceConnector EntityType="FinanceManagementModel.Appointment" />
+        <InheritanceConnector EntityType="FinanceManagementModel.Task" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

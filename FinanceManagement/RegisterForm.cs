@@ -12,6 +12,7 @@ namespace FinanceManagement
 {
     public partial class RegisterForm : Form
     {
+       // private static RegisterForm registerForm = null;
         User newuser = new User();
         public RegisterForm()
         {
@@ -31,6 +32,8 @@ namespace FinanceManagement
                 db.Users.Add(newuser);
                 db.SaveChanges();
             }
+
+            Clear();
         }
 
         private void Cancel(object sender, EventArgs e)

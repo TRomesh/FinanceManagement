@@ -55,12 +55,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Appointment.cs">
+      <DependentUpon>FinanceManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Contact.cs">
+      <DependentUpon>FinanceManagementModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ContactForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ContactForm.Designer.cs">
       <DependentUpon>ContactForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Events.cs">
+      <DependentUpon>FinanceManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Expense.cs" />
     <Compile Include="ExpenseForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +92,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FinanceManagementModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Income.cs" />
     <Compile Include="IncomeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,9 +119,15 @@
     <Compile Include="RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Task.cs">
+      <DependentUpon>FinanceManagementModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="User.cs">
       <DependentUpon>FinanceManagementModel.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ExpenseForm.resx">
+      <DependentUpon>ExpenseForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>

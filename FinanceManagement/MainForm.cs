@@ -16,5 +16,11 @@ namespace FinanceManagement
         {
             InitializeComponent();
         }
+
+        private void Expense(object sender, EventArgs e)
+        {
+            ExpenseForm epxf = new ExpenseForm();
+            epxf.Show();
+        }
     }
 }

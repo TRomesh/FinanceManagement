@@ -26,5 +26,7 @@ namespace FinanceManagement
         }
     
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Contact> Contacts { get; set; }
+        public virtual DbSet<Events> Events { get; set; }
     }
 }
