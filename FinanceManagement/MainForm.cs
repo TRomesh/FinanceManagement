@@ -27,7 +27,13 @@ namespace FinanceManagement
         {
 
                 IncomeForm inxf = new IncomeForm();
-            inxf.Show();
+                inxf.Show();
+        }
+
+        private void Contact(object sender, EventArgs e)
+        {
+            ContactForm cntf = new ContactForm();
+            cntf.Show();
         }
     }
 }

@@ -18,6 +18,7 @@ namespace FinanceManagement
         public string Name { get; set; }
         public string Emal { get; set; }
         public int UserId { get; set; }
+        public string Type { get; set; }
     
         public virtual User User { get; set; }
     }

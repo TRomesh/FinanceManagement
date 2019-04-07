@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/06/2019 10:51:18
+-- Date Created: 04/06/2019 20:05:27
 -- Generated from EDMX file: C:\Users\Hp\Documents\work\FinanceManagement\FinanceManagement\FinanceManagementModel.edmx
 -- --------------------------------------------------
 
@@ -17,11 +17,35 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_Appointment_inherits_Events]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Events_Appointment] DROP CONSTRAINT [FK_Appointment_inherits_Events];
+GO
+IF OBJECT_ID(N'[dbo].[FK_EventsUser]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Events] DROP CONSTRAINT [FK_EventsUser];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Task_inherits_Events]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Events_Task] DROP CONSTRAINT [FK_Task_inherits_Events];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserContact]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Contacts] DROP CONSTRAINT [FK_UserContact];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[Contacts]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Contacts];
+GO
+IF OBJECT_ID(N'[dbo].[Events]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Events];
+GO
+IF OBJECT_ID(N'[dbo].[Events_Appointment]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Events_Appointment];
+GO
+IF OBJECT_ID(N'[dbo].[Events_Task]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Events_Task];
+GO
 IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Users];
 GO
@@ -46,7 +70,8 @@ CREATE TABLE [dbo].[Contacts] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Emal] nvarchar(max)  NOT NULL,
-    [UserId] int  NOT NULL
+    [UserId] int  NOT NULL,
+    [Type] nvarchar(max)  NOT NULL
 );
 GO
 

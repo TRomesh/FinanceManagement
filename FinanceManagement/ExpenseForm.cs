@@ -47,27 +47,31 @@ namespace FinanceManagement
                
                 
                 combo1[count] = new ComboBox();
-                combo1[count].Top = cLeft * 25;
+              //  combo1[count].Top = cLeft * 25;
                 //combo1[count].Left = 100;
                 for (int i = 1; i <= 5; i++)
                     combo1[count].Items.Add("Item " + i);
                 rtext1[count] = new RichTextBox();
-                rtext1[count].Top = cLeft * 25;
+               // rtext1[count].Top = cLeft * 25;
                 //rtext1[count].Left = 100;
                 text1[count] = new TextBox();
-                text1[count].Top = cLeft * 25;
+               // text1[count].Top = cLeft * 25;
                // text1[count].Left = 100;
                 rowIndex = this.items_panel.RowCount++;
                 combo1[count].Dock = DockStyle.None;
                 rtext1[count].Dock = DockStyle.None;
                 text1[count].Dock = DockStyle.None;
+                this.items_panel.Dock = DockStyle.None;
                 combo1[count].Anchor = AnchorStyles.None;
                 rtext1[count].Anchor = AnchorStyles.None;
                 text1[count].Anchor = AnchorStyles.None;
                 this.items_panel.Controls.Add(this.combo1[count], 0, rowIndex);
                 this.items_panel.Controls.Add(this.rtext1[count], 1, rowIndex);
                 this.items_panel.Controls.Add(this.text1[count], 2, rowIndex);
-                this.items_panel.RowStyles.Add(new RowStyle(SizeType.Absolute, 20));
+                this.items_panel.RowStyles.Add(new RowStyle(SizeType.Absolute, 50));
+                this.items_panel.AutoScroll = true;
+                this.items_panel.HorizontalScroll.Visible = false;
+           
                 cLeft = cLeft + 1;
             }
         }
