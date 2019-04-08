@@ -47,7 +47,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(53, 123);
+            this.button2.Location = new System.Drawing.Point(53, 107);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 1;
@@ -57,7 +57,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(53, 182);
+            this.button3.Location = new System.Drawing.Point(53, 155);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 2;
@@ -67,20 +67,20 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(53, 247);
+            this.button4.Location = new System.Drawing.Point(53, 205);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 3;
-            this.button4.Text = "button4";
+            this.button4.Text = "Reports";
             this.button4.UseVisualStyleBackColor = true;
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(53, 309);
+            this.button5.Location = new System.Drawing.Point(53, 252);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 4;
-            this.button5.Text = "button5";
+            this.button5.Text = "Prediction";
             this.button5.UseVisualStyleBackColor = true;
             // 
             // MainForm

@@ -11,6 +11,7 @@ namespace FinanceManagement
         public int Id { get; set; }
         public float Amount { get; set; }
         public string Contact { get; set; }
-        public DateTime datetime { get; set; }
+        public string Description { get; set; }
+        public string Datetime { get; set; }
     }
 }

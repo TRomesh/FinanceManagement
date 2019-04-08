@@ -29,6 +29,7 @@ namespace FinanceManagement
 
         private void combo1_rtext1_text1_array()
         {
+            items_panel.HorizontalScroll.Enabled = false;
             combo1 = new ComboBox[max_row];
             rtext1 = new RichTextBox[max_row];
             text1 = new TextBox[max_row];
@@ -44,30 +45,22 @@ namespace FinanceManagement
             else
             {
                 count++;
-               
-                
                 combo1[count] = new ComboBox();
-              //  combo1[count].Top = cLeft * 25;
-                //combo1[count].Left = 100;
                 for (int i = 1; i <= 5; i++)
                     combo1[count].Items.Add("Item " + i);
                 rtext1[count] = new RichTextBox();
-               // rtext1[count].Top = cLeft * 25;
-                //rtext1[count].Left = 100;
                 text1[count] = new TextBox();
-               // text1[count].Top = cLeft * 25;
-               // text1[count].Left = 100;
                 rowIndex = this.items_panel.RowCount++;
-                combo1[count].Dock = DockStyle.None;
-                rtext1[count].Dock = DockStyle.None;
-                text1[count].Dock = DockStyle.None;
+                combo1[count].Dock = DockStyle.Fill;
+                rtext1[count].Dock = DockStyle.Fill;
+                text1[count].Dock = DockStyle.Fill;
                 this.items_panel.Dock = DockStyle.None;
                 combo1[count].Anchor = AnchorStyles.None;
                 rtext1[count].Anchor = AnchorStyles.None;
                 text1[count].Anchor = AnchorStyles.None;
                 this.items_panel.Controls.Add(this.combo1[count], 0, rowIndex);
-                this.items_panel.Controls.Add(this.rtext1[count], 1, rowIndex);
-                this.items_panel.Controls.Add(this.text1[count], 2, rowIndex);
+                this.items_panel.Controls.Add(this.text1[count], 1, rowIndex);
+                this.items_panel.Controls.Add(this.rtext1[count], 2, rowIndex);
                 this.items_panel.RowStyles.Add(new RowStyle(SizeType.Absolute, 50));
                 this.items_panel.AutoScroll = true;
                 this.items_panel.HorizontalScroll.Visible = false;
@@ -92,7 +85,7 @@ namespace FinanceManagement
         {
             textBox1.ResetText();
             comboBox1.ResetText();
-            comboBox2.ResetText();
+            richTextBox1.ResetText();
             for (int i = count; i > -1; i--)
             {
                 this.items_panel.Controls.Remove(combo1[i]);
@@ -121,7 +114,7 @@ namespace FinanceManagement
                     MessageBox.Show("No database connection for this application !!! ");
             }
             else if (count == -1)
-                if (textBox1.Text == "" || comboBox1.SelectedItem == null || comboBox2.SelectedItem == null)
+                if (textBox1.Text == "" || comboBox1.SelectedItem == null || richTextBox1.Text == "")
                     MessageBox.Show("Empty Fields detected ! Please fill or select data for all fields");
                 else
                     MessageBox.Show("No database connection for this application");
@@ -131,17 +124,6 @@ namespace FinanceManagement
         {
             System.Environment.Exit(0);
         }
-
-        //public System.Windows.Forms.TextBox AddNewTextBox()
-        //{
-        //    System.Windows.Forms.TextBox txt = new System.Windows.Forms.TextBox();
-        //    this.Controls.Add(txt);
-        //    txt.Top = cLeft * 25;
-        //    txt.Left = 100;
-        //    txt.Text = "TextBox " + this.cLeft.ToString();
-        //    cLeft = cLeft + 1;
-        //    return txt;
-        //}
 
         private void AddExpenseLine(object sender, EventArgs e)
         {

@@ -37,10 +37,10 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.contacts = new System.Windows.Forms.ComboBox();
             this.items_panel = new System.Windows.Forms.TableLayoutPanel();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.amount = new System.Windows.Forms.TextBox();
+            this.description = new System.Windows.Forms.RichTextBox();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -87,6 +87,7 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "Add Row";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.add_row_Click);
             // 
             // button2
             // 
@@ -96,6 +97,7 @@
             this.button2.TabIndex = 6;
             this.button2.Text = "Remove Row";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.remove_row_Click);
             // 
             // button5
             // 
@@ -105,6 +107,7 @@
             this.button5.TabIndex = 9;
             this.button5.Text = "Cancel";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button3
             // 
@@ -114,6 +117,7 @@
             this.button3.TabIndex = 7;
             this.button3.Text = "Submit";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.submit_Click);
             // 
             // button4
             // 
@@ -123,13 +127,14 @@
             this.button4.TabIndex = 8;
             this.button4.Text = "Reset";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.reset_Click);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.description);
+            this.groupBox1.Controls.Add(this.contacts);
             this.groupBox1.Controls.Add(this.items_panel);
-            this.groupBox1.Controls.Add(this.comboBox2);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.amount);
             this.groupBox1.Location = new System.Drawing.Point(2, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(522, 214);
@@ -137,20 +142,20 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
-            // comboBox1
+            // contacts
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(179, 35);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(166, 21);
-            this.comboBox1.TabIndex = 3;
+            this.contacts.FormattingEnabled = true;
+            this.contacts.Location = new System.Drawing.Point(18, 36);
+            this.contacts.Name = "contacts";
+            this.contacts.Size = new System.Drawing.Size(155, 21);
+            this.contacts.TabIndex = 3;
             // 
             // items_panel
             // 
             this.items_panel.ColumnCount = 3;
             this.items_panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.74194F));
             this.items_panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.25806F));
-            this.items_panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.items_panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 151F));
             this.items_panel.Location = new System.Drawing.Point(18, 64);
             this.items_panel.Name = "items_panel";
             this.items_panel.RowCount = 1;
@@ -158,20 +163,21 @@
             this.items_panel.Size = new System.Drawing.Size(481, 132);
             this.items_panel.TabIndex = 2;
             // 
-            // comboBox2
+            // amount
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(351, 36);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(148, 21);
-            this.comboBox2.TabIndex = 4;
+            this.amount.Location = new System.Drawing.Point(179, 36);
+            this.amount.Name = "amount";
+            this.amount.Size = new System.Drawing.Size(166, 20);
+            this.amount.TabIndex = 5;
+            this.amount.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // textBox1
+            // description
             // 
-            this.textBox1.Location = new System.Drawing.Point(18, 36);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(155, 20);
-            this.textBox1.TabIndex = 5;
+            this.description.Location = new System.Drawing.Point(352, 36);
+            this.description.Name = "description";
+            this.description.Size = new System.Drawing.Size(147, 22);
+            this.description.TabIndex = 6;
+            this.description.Text = "";
             // 
             // IncomeForm
             // 
@@ -203,9 +209,9 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox contacts;
         private System.Windows.Forms.TableLayoutPanel items_panel;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox amount;
+        private System.Windows.Forms.RichTextBox description;
     }
 }

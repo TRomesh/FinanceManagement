@@ -21,6 +21,13 @@ namespace FinanceManagement
         {
             InitializeComponent();
             populateContacts();
+            edidelbutton();
+        }
+
+        public void edidelbutton()
+        {
+            btnupdate.Enabled = false;
+            btndelete.Enabled = false;
         }
 
         public void populateContacts()
@@ -70,6 +77,7 @@ namespace FinanceManagement
         private void Clear()
         {
             cemail.Text = cname.Text = ctype.Text = "";
+            this.edidelbutton();
         }
 
         private void DoubleClickContact(object sender, EventArgs e)
@@ -86,7 +94,43 @@ namespace FinanceManagement
                     cemail.Text = contact.Emal;
                     ctype.Text = contact.Type;
                 }
+                btnupdate.Enabled = true;
+                btndelete.Enabled = true;
             }
+        }
+
+        private void Update(object sender, EventArgs e)
+        {
+            using (FinanceManagementEntities db = new FinanceManagementEntities())
+            {
+                contact = new Contact();
+                contact.UserId = 1;
+                contact.Id = SelectedId;
+                contact.Name = cname.Text;
+                contact.Emal = cemail.Text;
+                contact.Type = ctype.Text;
+                db.Entry(contact).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
+
+            this.Clear();
+            this.populateContacts();
+
+        }
+
+        private void Delete(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure to delete this record?","Delete",MessageBoxButtons.YesNo)== DialogResult.Yes);
+            {
+                using (FinanceManagementEntities db = new FinanceManagementEntities())
+                {
+
+                    cname.Text = contact.Name;
+                    cemail.Text = contact.Emal;
+                    ctype.Text = contact.Type;
+                }
+            }
+            
         }
     }
 }
