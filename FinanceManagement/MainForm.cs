@@ -149,5 +149,12 @@ namespace FinanceManagement
         {
             Application.Exit();
         }
+
+        private void Logout(object sender, EventArgs e)
+        {
+            LoginForm log = new LoginForm();
+            this.Hide();
+            log.Show();
+        }
     }
 }

@@ -232,6 +232,7 @@
     <None Include="Resources\minus.png" />
     <None Include="Resources\exchange1.png" />
     <None Include="Resources\log-in.png" />
+    <None Include="Resources\logout.png" />
     <Content Include="Resources\profit.png" />
     <None Include="Resources\profit1.png" />
     <Content Include="Resources\report.png" />
