@@ -88,17 +88,29 @@ namespace FinanceManagement
             for (int i = 1; i <= 5; i++)
                 contacts.Items.Add("Item " + i);
 
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Expense>));
+            if (File.Exists(filepath))
+            {
+                XDocument lbSrc = XDocument.Load(filepath);
+                List<Expense> ExpList = new List<Expense>();
 
-            using (FileStream stream = File.OpenWrite(filepath))
-            {
-                list = new List<Expense>();
-                serializer.Serialize(stream, list);
+                foreach (XElement exp in lbSrc.Descendants("Expense"))
+                {
+                    ExpList.Add(new Expense
+                    {
+                        Id = int.Parse(exp.Element("Id").Value),
+                        Amount = float.Parse(exp.Element("Amount").Value),
+                        Contact = exp.Element("Contact").Value,
+                        Description = exp.Element("Description").Value,
+                        Datetime = exp.Element("Datetime").Value
+                    });
+                }
+
+                if (ExpList != null)
+                {
+                    dataGridView1.DataSource = new BindingList<Expense>(ExpList);
+                }
             }
-            if (list != null)
-            {
-                dataGridView1.DataSource = new BindingList<Expense>(list);
-            }
+
             
 
         }

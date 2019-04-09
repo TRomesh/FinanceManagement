@@ -148,6 +148,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
@@ -185,6 +186,30 @@
       <DependentUpon>FinanceManagementModel.edmx</DependentUpon>
       <LastGenOutput>FinanceManagementModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Resources\bar-chart.png" />
+    <None Include="Resources\user1.png" />
+    <None Include="Resources\user.png" />
+    <None Include="Resources\trash.png" />
+    <None Include="Resources\team1.png" />
+    <None Include="Resources\bar-chart1.png" />
+    <Content Include="Resources\cancel.png" />
+    <None Include="Resources\cancel1.png" />
+    <Content Include="Resources\checked.png" />
+    <None Include="Resources\checklist.png" />
+    <None Include="Resources\checked1.png" />
+    <None Include="Resources\delete.png" />
+    <Content Include="Resources\exchange.png" />
+    <None Include="Resources\plus.png" />
+    <None Include="Resources\minus.png" />
+    <None Include="Resources\exchange1.png" />
+    <None Include="Resources\log-in.png" />
+    <Content Include="Resources\profit.png" />
+    <None Include="Resources\profit1.png" />
+    <Content Include="Resources\report.png" />
+    <None Include="Resources\report1.png" />
+    <None Include="Resources\save.png" />
+    <Content Include="Resources\team.png" />
+    <None Include="Resources\bank.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -86,41 +86,49 @@
             // 
             // button1
             // 
+            this.button1.Image = global::FinanceManagement.Properties.Resources.plus;
             this.button1.Location = new System.Drawing.Point(17, 30);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(107, 24);
+            this.button1.Size = new System.Drawing.Size(107, 25);
             this.button1.TabIndex = 1;
             this.button1.Text = "Add Row";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.add_row_Click);
             // 
             // button2
             // 
+            this.button2.Image = global::FinanceManagement.Properties.Resources.minus;
             this.button2.Location = new System.Drawing.Point(17, 73);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(102, 23);
+            this.button2.Size = new System.Drawing.Size(102, 25);
             this.button2.TabIndex = 6;
             this.button2.Text = "Remove Row";
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.remove_row_Click);
             // 
             // button5
             // 
+            this.button5.Image = global::FinanceManagement.Properties.Resources.cancel;
             this.button5.Location = new System.Drawing.Point(17, 174);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.Size = new System.Drawing.Size(75, 25);
             this.button5.TabIndex = 9;
             this.button5.Text = "Cancel";
+            this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button3
             // 
+            this.button3.Image = global::FinanceManagement.Properties.Resources._checked;
             this.button3.Location = new System.Drawing.Point(17, 136);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(75, 25);
             this.button3.TabIndex = 7;
             this.button3.Text = "Submit";
+            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.submit_Click);
             // 
@@ -128,9 +136,10 @@
             // 
             this.button4.Location = new System.Drawing.Point(105, 136);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.Size = new System.Drawing.Size(75, 25);
             this.button4.TabIndex = 8;
             this.button4.Text = "Reset";
+            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.reset_Click);
             // 

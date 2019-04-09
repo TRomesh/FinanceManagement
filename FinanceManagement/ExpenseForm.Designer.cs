@@ -29,11 +29,7 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -45,6 +41,10 @@
             this.contacts = new System.Windows.Forms.ComboBox();
             this.description = new System.Windows.Forms.RichTextBox();
             this.amount = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -60,55 +60,15 @@
             this.dataGridView1.Size = new System.Drawing.Size(801, 181);
             this.dataGridView1.TabIndex = 0;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(17, 64);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(107, 24);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Add Row";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.add_row_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(130, 64);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(102, 23);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Remove Row";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.remove_row_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(17, 173);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Submit";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.submit_Click);
-            // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(107, 173);
+            this.button4.Location = new System.Drawing.Point(28, 134);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 8;
             this.button4.Text = "Reset";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.reset_Click);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(188, 173);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 9;
-            this.button5.Text = "Cancel";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.cancel_Click);
             // 
             // groupBox2
             // 
@@ -117,7 +77,7 @@
             this.groupBox2.Controls.Add(this.button5);
             this.groupBox2.Controls.Add(this.button3);
             this.groupBox2.Controls.Add(this.button4);
-            this.groupBox2.Location = new System.Drawing.Point(596, 12);
+            this.groupBox2.Location = new System.Drawing.Point(596, 9);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(229, 214);
             this.groupBox2.TabIndex = 11;
@@ -216,11 +176,59 @@
             this.amount.Size = new System.Drawing.Size(150, 20);
             this.amount.TabIndex = 5;
             // 
+            // button1
+            // 
+            this.button1.Image = global::FinanceManagement.Properties.Resources.plus;
+            this.button1.Location = new System.Drawing.Point(26, 41);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 25);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Add Row";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.add_row_Click);
+            // 
+            // button2
+            // 
+            this.button2.Image = global::FinanceManagement.Properties.Resources.minus;
+            this.button2.Location = new System.Drawing.Point(107, 41);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(99, 25);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "Remove Row";
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.remove_row_Click);
+            // 
+            // button5
+            // 
+            this.button5.Image = global::FinanceManagement.Properties.Resources.cancel;
+            this.button5.Location = new System.Drawing.Point(28, 173);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 25);
+            this.button5.TabIndex = 9;
+            this.button5.Text = "Cancel";
+            this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.cancel_Click);
+            // 
+            // button3
+            // 
+            this.button3.Image = global::FinanceManagement.Properties.Resources._checked;
+            this.button3.Location = new System.Drawing.Point(131, 173);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 25);
+            this.button3.TabIndex = 7;
+            this.button3.Text = "Submit";
+            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.submit_Click);
+            // 
             // ExpenseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(833, 450);
+            this.ClientSize = new System.Drawing.Size(827, 450);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);

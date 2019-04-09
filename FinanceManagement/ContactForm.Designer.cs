@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnupdate = new System.Windows.Forms.Button();
-            this.btndelete = new System.Windows.Forms.Button();
-            this.btncancel = new System.Windows.Forms.Button();
-            this.btnsave = new System.Windows.Forms.Button();
             this.cemail = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -41,6 +37,10 @@
             this.cname = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.contactGridView = new System.Windows.Forms.DataGridView();
+            this.btnupdate = new System.Windows.Forms.Button();
+            this.btndelete = new System.Windows.Forms.Button();
+            this.btncancel = new System.Windows.Forms.Button();
+            this.btnsave = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contactGridView)).BeginInit();
@@ -63,47 +63,7 @@
             this.groupBox1.Size = new System.Drawing.Size(624, 159);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
-            // 
-            // btnupdate
-            // 
-            this.btnupdate.Location = new System.Drawing.Point(391, 105);
-            this.btnupdate.Name = "btnupdate";
-            this.btnupdate.Size = new System.Drawing.Size(75, 23);
-            this.btnupdate.TabIndex = 9;
-            this.btnupdate.Text = "Update";
-            this.btnupdate.UseVisualStyleBackColor = true;
-            this.btnupdate.Click += new System.EventHandler(this.Update);
-            // 
-            // btndelete
-            // 
-            this.btndelete.Location = new System.Drawing.Point(391, 75);
-            this.btndelete.Name = "btndelete";
-            this.btndelete.Size = new System.Drawing.Size(75, 23);
-            this.btndelete.TabIndex = 8;
-            this.btndelete.Text = "Delete";
-            this.btndelete.UseVisualStyleBackColor = true;
-            this.btndelete.Click += new System.EventHandler(this.Delete);
-            // 
-            // btncancel
-            // 
-            this.btncancel.Location = new System.Drawing.Point(391, 46);
-            this.btncancel.Name = "btncancel";
-            this.btncancel.Size = new System.Drawing.Size(75, 23);
-            this.btncancel.TabIndex = 7;
-            this.btncancel.Text = "Cancel";
-            this.btncancel.UseVisualStyleBackColor = true;
-            this.btncancel.Click += new System.EventHandler(this.Cancel);
-            // 
-            // btnsave
-            // 
-            this.btnsave.Location = new System.Drawing.Point(391, 17);
-            this.btnsave.Name = "btnsave";
-            this.btnsave.Size = new System.Drawing.Size(75, 23);
-            this.btnsave.TabIndex = 6;
-            this.btnsave.Text = "Save";
-            this.btnsave.UseVisualStyleBackColor = true;
-            this.btnsave.Click += new System.EventHandler(this.Save);
+            this.groupBox1.Text = "Contact Details";
             // 
             // cemail
             // 
@@ -161,7 +121,7 @@
             this.groupBox2.Size = new System.Drawing.Size(624, 235);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
+            this.groupBox2.Text = "Contact Tables";
             // 
             // contactGridView
             // 
@@ -173,6 +133,54 @@
             this.contactGridView.Size = new System.Drawing.Size(580, 180);
             this.contactGridView.TabIndex = 0;
             this.contactGridView.DoubleClick += new System.EventHandler(this.DoubleClickContact);
+            // 
+            // btnupdate
+            // 
+            this.btnupdate.Image = global::FinanceManagement.Properties.Resources.exchange;
+            this.btnupdate.Location = new System.Drawing.Point(391, 108);
+            this.btnupdate.Name = "btnupdate";
+            this.btnupdate.Size = new System.Drawing.Size(75, 24);
+            this.btnupdate.TabIndex = 9;
+            this.btnupdate.Text = "Update";
+            this.btnupdate.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnupdate.UseVisualStyleBackColor = true;
+            this.btnupdate.Click += new System.EventHandler(this.Update);
+            // 
+            // btndelete
+            // 
+            this.btndelete.Image = global::FinanceManagement.Properties.Resources.trash;
+            this.btndelete.Location = new System.Drawing.Point(391, 79);
+            this.btndelete.Name = "btndelete";
+            this.btndelete.Size = new System.Drawing.Size(75, 23);
+            this.btndelete.TabIndex = 8;
+            this.btndelete.Text = "Delete";
+            this.btndelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btndelete.UseVisualStyleBackColor = true;
+            this.btndelete.Click += new System.EventHandler(this.Delete);
+            // 
+            // btncancel
+            // 
+            this.btncancel.Image = global::FinanceManagement.Properties.Resources.cancel;
+            this.btncancel.Location = new System.Drawing.Point(391, 46);
+            this.btncancel.Name = "btncancel";
+            this.btncancel.Size = new System.Drawing.Size(75, 27);
+            this.btncancel.TabIndex = 7;
+            this.btncancel.Text = "Cancel";
+            this.btncancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btncancel.UseVisualStyleBackColor = true;
+            this.btncancel.Click += new System.EventHandler(this.Cancel);
+            // 
+            // btnsave
+            // 
+            this.btnsave.Image = global::FinanceManagement.Properties.Resources.save;
+            this.btnsave.Location = new System.Drawing.Point(391, 17);
+            this.btnsave.Name = "btnsave";
+            this.btnsave.Size = new System.Drawing.Size(75, 23);
+            this.btnsave.TabIndex = 6;
+            this.btnsave.Text = "Save";
+            this.btnsave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnsave.UseVisualStyleBackColor = true;
+            this.btnsave.Click += new System.EventHandler(this.Save);
             // 
             // ContactForm
             // 
