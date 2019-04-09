@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static FinanceManagement.MD5;
 
 namespace FinanceManagement
 {
@@ -25,7 +27,7 @@ namespace FinanceManagement
             newuser.Username = username.Text.Trim();
             newuser.Email = email.Text.Trim();
             newuser.Phone = phone.Text.Trim();
-            newuser.Password = password.Text.Trim();
+            newuser.Password = MD5Encrypt(password.Text.Trim());
 
             using (FinanceManagementEntities db = new FinanceManagementEntities())
             {
@@ -45,5 +47,6 @@ namespace FinanceManagement
         {
             name.Text = username.Text = email.Text = phone.Text = password.Text = "";
         }
+
     }
 }

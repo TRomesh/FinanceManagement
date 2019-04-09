@@ -17,6 +17,7 @@ namespace FinanceManagement
 {
     public partial class IncomeForm : Form
     {
+        public event sendMessageIncome sendIncome;
         private ComboBox[] combo1;  // Array of comboboxes
         private RichTextBox[] rtext1;  // Array of richtextbo
         private TextBox[] text1;    // Array of textboxes
@@ -25,12 +26,22 @@ namespace FinanceManagement
         private int max_row = 5;
         private int top_row = 0;
         private int empty_count = 0;
+        private string name = "";
+        private int id = 0;
         string filepath = Environment.CurrentDirectory + @"Income.xml";
 
         public IncomeForm()
         {
             InitializeComponent();
             combo1_rtext1_text1_array();    // declaring array for new row addition
+        }
+
+        public IncomeForm(string name, int id)
+        {
+            InitializeComponent();
+            combo1_rtext1_text1_array();
+            this.name = name;
+            this.id = id;
         }
 
         public void WriteToXML(Income inc)
@@ -74,6 +85,7 @@ namespace FinanceManagement
                     new XElement("Datetime", inc.Datetime)
                    ));
                 xDocument.Save(filepath);
+                this.sendIncome(true);
             }
 
         }
@@ -88,6 +100,29 @@ namespace FinanceManagement
             items_panel.AutoScroll = true;
             for (int i = 1; i <= 5; i++)
                 contacts.Items.Add("Item " + i);
+
+            if (File.Exists(filepath))
+            {
+                XDocument lbSrc = XDocument.Load(filepath);
+                List<Income> ExpList = new List<Income>();
+
+                foreach (XElement exp in lbSrc.Descendants("Income"))
+                {
+                    ExpList.Add(new Income
+                    {
+                        Id = int.Parse(exp.Element("Id").Value),
+                        Amount = float.Parse(exp.Element("Amount").Value),
+                        Contact = exp.Element("Contact").Value,
+                        Description = exp.Element("Description").Value,
+                        Datetime = exp.Element("Datetime").Value
+                    });
+                }
+
+                if (ExpList != null)
+                {
+                    dataGridView1.DataSource = new BindingList<Income>(ExpList);
+                }
+            }
         }
 
         private void add_row_Click(object sender, EventArgs e)

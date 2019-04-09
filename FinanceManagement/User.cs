@@ -11,7 +11,10 @@ namespace FinanceManagement
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.IO;
+    using System.Security.Cryptography;
+    using System.Text;
+
     public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]

@@ -16,12 +16,13 @@ namespace FinanceManagement
 {
     public partial class ExpenseForm : Form
     {
-
+        public event sendMessageExpense sendExpense;
         private ComboBox[] combo1;  // Array of comboboxes
         private RichTextBox[] rtext1;  // Array of richtextbo
         private TextBox[] text1;    // Array of textboxes
         private GroupBox[] groupBox; // Array of groupboxes
-        List<Expense> list = null;
+        private string name = "";
+        private int id = 0;
         private int count = 0;
         private int max_row = 5;
         private int top_row = 0;
@@ -31,6 +32,14 @@ namespace FinanceManagement
         {
             InitializeComponent();
             combo1_rtext1_text1_array();    // declaring array for new row addition
+        }
+
+        public ExpenseForm(string name, int id)
+        {
+            InitializeComponent();
+            combo1_rtext1_text1_array();    // declaring array for new row addition
+            this.name = name;
+            this.id = id;
         }
 
         public void WriteToXML(Expense exp)
@@ -74,6 +83,7 @@ namespace FinanceManagement
                     new XElement("Datetime", exp.Datetime)
                    ));
                 xDocument.Save(filepath);
+                this.sendExpense(true);
             }
 
         }

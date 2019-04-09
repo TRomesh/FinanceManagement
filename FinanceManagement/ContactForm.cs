@@ -12,7 +12,8 @@ namespace FinanceManagement
 {
     public partial class ContactForm : Form
     {
-
+        private string name = "";
+        private int id = 0;
         Contact contact;
         int SelectedId = 0;
         FinanceManagementEntities db;
@@ -22,6 +23,15 @@ namespace FinanceManagement
             InitializeComponent();
             populateContacts();
             edidelbutton();
+        }
+
+        public ContactForm(string name, int id)
+        {
+            InitializeComponent();
+            populateContacts();
+            edidelbutton();
+            this.name = name;
+            this.id = id;
         }
 
         public void edidelbutton()
@@ -57,7 +67,7 @@ namespace FinanceManagement
             contact.Name = cname.Text.Trim();
             contact.Emal = cemail.Text.Trim();
             contact.Type = ctype.Text.Trim();
-            contact.UserId = 1;
+            contact.UserId = this.id;
 
             using (db = new FinanceManagementEntities())
             {
