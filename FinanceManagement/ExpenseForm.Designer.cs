@@ -30,21 +30,26 @@
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
-            this.items_panel = new System.Windows.Forms.TableLayoutPanel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.items_panel = new System.Windows.Forms.Panel();
+            this.mainGroupBox = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.contacts = new System.Windows.Forms.ComboBox();
+            this.description = new System.Windows.Forms.RichTextBox();
+            this.amount = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.mainGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -64,34 +69,6 @@
             this.button1.Text = "Add Row";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.add_row_Click);
-            // 
-            // items_panel
-            // 
-            this.items_panel.ColumnCount = 3;
-            this.items_panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.74194F));
-            this.items_panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.25806F));
-            this.items_panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 151F));
-            this.items_panel.Location = new System.Drawing.Point(6, 79);
-            this.items_panel.Name = "items_panel";
-            this.items_panel.RowCount = 1;
-            this.items_panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.73545F));
-            this.items_panel.Size = new System.Drawing.Size(510, 117);
-            this.items_panel.TabIndex = 2;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(16, 36);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(156, 21);
-            this.comboBox1.TabIndex = 3;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(186, 37);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(176, 20);
-            this.textBox1.TabIndex = 5;
             // 
             // button2
             // 
@@ -133,19 +110,6 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.cancel_Click);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.richTextBox1);
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.items_panel);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(522, 214);
-            this.groupBox1.TabIndex = 10;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.button1);
@@ -153,9 +117,9 @@
             this.groupBox2.Controls.Add(this.button5);
             this.groupBox2.Controls.Add(this.button3);
             this.groupBox2.Controls.Add(this.button4);
-            this.groupBox2.Location = new System.Drawing.Point(552, 12);
+            this.groupBox2.Location = new System.Drawing.Point(596, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(273, 214);
+            this.groupBox2.Size = new System.Drawing.Size(229, 214);
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "groupBox2";
@@ -170,29 +134,104 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "groupBox3";
             // 
-            // richTextBox1
+            // groupBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(368, 36);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(148, 37);
-            this.richTextBox1.TabIndex = 6;
-            this.richTextBox1.Text = "";
+            this.groupBox1.Controls.Add(this.items_panel);
+            this.groupBox1.Controls.Add(this.mainGroupBox);
+            this.groupBox1.Location = new System.Drawing.Point(10, 9);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(580, 214);
+            this.groupBox1.TabIndex = 14;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
+            // 
+            // items_panel
+            // 
+            this.items_panel.Location = new System.Drawing.Point(6, 82);
+            this.items_panel.Name = "items_panel";
+            this.items_panel.Size = new System.Drawing.Size(568, 126);
+            this.items_panel.TabIndex = 8;
+            // 
+            // mainGroupBox
+            // 
+            this.mainGroupBox.Controls.Add(this.label3);
+            this.mainGroupBox.Controls.Add(this.label2);
+            this.mainGroupBox.Controls.Add(this.label1);
+            this.mainGroupBox.Controls.Add(this.contacts);
+            this.mainGroupBox.Controls.Add(this.description);
+            this.mainGroupBox.Controls.Add(this.amount);
+            this.mainGroupBox.Location = new System.Drawing.Point(18, 19);
+            this.mainGroupBox.Name = "mainGroupBox";
+            this.mainGroupBox.Size = new System.Drawing.Size(518, 56);
+            this.mainGroupBox.TabIndex = 7;
+            this.mainGroupBox.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(397, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(60, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Description";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(237, 11);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(43, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Amount";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(52, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Contact";
+            // 
+            // contacts
+            // 
+            this.contacts.FormattingEnabled = true;
+            this.contacts.Location = new System.Drawing.Point(6, 29);
+            this.contacts.Name = "contacts";
+            this.contacts.Size = new System.Drawing.Size(150, 21);
+            this.contacts.TabIndex = 3;
+            // 
+            // description
+            // 
+            this.description.Location = new System.Drawing.Point(359, 30);
+            this.description.Name = "description";
+            this.description.Size = new System.Drawing.Size(145, 20);
+            this.description.TabIndex = 6;
+            this.description.Text = "";
+            // 
+            // amount
+            // 
+            this.amount.Location = new System.Drawing.Point(182, 29);
+            this.amount.Name = "amount";
+            this.amount.Size = new System.Drawing.Size(150, 20);
+            this.amount.TabIndex = 5;
             // 
             // ExpenseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(833, 450);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
             this.Name = "ExpenseForm";
             this.Text = "ExpenseForm";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.mainGroupBox.ResumeLayout(false);
+            this.mainGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -201,16 +240,20 @@
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TableLayoutPanel items_panel;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Panel items_panel;
+        private System.Windows.Forms.GroupBox mainGroupBox;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox contacts;
+        private System.Windows.Forms.RichTextBox description;
+        private System.Windows.Forms.TextBox amount;
     }
 }
