@@ -24,7 +24,7 @@ namespace FinanceManagement
         List<Income> income;
         List<Expense> expense;
         string incomefilepath = Environment.CurrentDirectory + @"Income.xml";
-        string expensefilepath = Environment.CurrentDirectory + @"Expense.xml";'
+        string expensefilepath = Environment.CurrentDirectory + @"Expense.xml";
 
         public ReportForm()
         {

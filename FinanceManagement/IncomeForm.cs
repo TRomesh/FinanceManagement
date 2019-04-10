@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
@@ -17,6 +18,9 @@ namespace FinanceManagement
 {
     public partial class IncomeForm : Form
     {
+        private Thread workerThread = null;
+        private bool stopProcess = false;
+        private delegate void UpdateStatusDelegate();
         public event sendMessageIncome sendIncome;
         private ComboBox[] combo1;  // Array of comboboxes
         private RichTextBox[] rtext1;  // Array of richtextbo
@@ -44,8 +48,10 @@ namespace FinanceManagement
             this.id = id;
         }
 
-        public void WriteToXML(Income inc)
+        public void WriteToXML(object param)
         {
+            Income inc = (Income)param;
+
             if (!File.Exists(filepath))
             {
                 XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
@@ -213,7 +219,8 @@ namespace FinanceManagement
                         inc.Contact = combo1[count].SelectedItem.ToString();
                         inc.Description = rtext1[count].Text.ToString();
                         inc.Datetime = DateTime.Now.ToString("MM-dd-yyyy");
-                        WriteToXML(inc);
+                        workerThread = new Thread(new ParameterizedThreadStart(WriteToXML));
+                        workerThread.Start(inc);
                     }
 
                 }
@@ -232,7 +239,8 @@ namespace FinanceManagement
                     inc.Contact = contacts.SelectedItem.ToString();
                     inc.Description = description.Text.ToString();
                     inc.Datetime = DateTime.Now.ToString("MM-dd-yyyy");
-                    WriteToXML(inc);
+                    workerThread = new Thread(new ParameterizedThreadStart(WriteToXML));
+                    workerThread.Start(inc);
                 }
                 else
                     MessageBox.Show("Empty Fields detected ! Please fill or select data for all fields");

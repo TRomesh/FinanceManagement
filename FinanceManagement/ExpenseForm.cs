@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
@@ -16,6 +17,8 @@ namespace FinanceManagement
 {
     public partial class ExpenseForm : Form
     {
+        private Thread workerThread = null;
+        private bool stopProcess = false;
         public event sendMessageExpense sendExpense;
         private ComboBox[] combo1;  // Array of comboboxes
         private RichTextBox[] rtext1;  // Array of richtextbo
@@ -42,8 +45,9 @@ namespace FinanceManagement
             this.id = id;
         }
 
-        public void WriteToXML(Expense exp)
+        public void  WriteToXML(object param)
         {
+            Expense exp = (Expense)param;
             if (!File.Exists(filepath))
             {
                 XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
@@ -66,6 +70,7 @@ namespace FinanceManagement
                     xmlWriter.WriteEndDocument();
                     xmlWriter.Flush();
                     xmlWriter.Close();
+                    this.sendExpense(true);
                 }
             }
             else
@@ -214,8 +219,9 @@ namespace FinanceManagement
                     exp.Contact = combo1[count].SelectedItem.ToString();
                     exp.Description = rtext1[count].Text.ToString();
                     exp.Datetime = DateTime.Now.ToString("MM-dd-yyyy");
-                    WriteToXML(exp);
-                }
+                        workerThread = new Thread(new ParameterizedThreadStart(WriteToXML));
+                        workerThread.Start(exp);
+                    }
 
             }
             if (empty_count > 0)
@@ -233,8 +239,9 @@ namespace FinanceManagement
                 exp.Contact = contacts.SelectedItem.ToString();
                 exp.Description = description.Text.ToString();
                 exp.Datetime = DateTime.Now.ToString("MM-dd-yyyy");
-                WriteToXML(exp);
-            }
+                    workerThread = new Thread(new ParameterizedThreadStart(WriteToXML));
+                    workerThread.Start(exp);
+                }
             else
                 MessageBox.Show("Empty Fields detected ! Please fill or select data for all fields");
     }
