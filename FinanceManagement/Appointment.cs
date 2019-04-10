@@ -14,6 +14,6 @@ namespace FinanceManagement
     
     public partial class Appointment : Events
     {
-        public int Type { get; set; }
+        public string Type { get; set; }
     }
 }

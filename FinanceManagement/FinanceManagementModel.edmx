@@ -56,19 +56,22 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Datetime" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Events_Appointment">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Type" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="nvarchar(max)" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Events_Task">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Type" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="nvarchar(max)" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Reccuring" Type="bit" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="UserContact">
@@ -162,7 +165,7 @@
           <Property Name="Emal" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="User" Relationship="FinanceManagementModel.UserContact" FromRole="Contact" ToRole="User" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="Type" Type="String" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
         </EntityType>
         <Association Name="UserContact">
           <End Type="FinanceManagementModel.User" Role="User" Multiplicity="1" />
@@ -184,6 +187,8 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="User" Relationship="FinanceManagementModel.EventsUser" FromRole="Events" ToRole="User" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Datetime" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" />
         </EntityType>
         <Association Name="EventsUser">
           <End Type="FinanceManagementModel.Events" Role="Events" Multiplicity="*" />
@@ -198,10 +203,11 @@
           </ReferentialConstraint>
         </Association>
         <EntityType Name="Appointment" BaseType="FinanceManagementModel.Events">
-          <Property Name="Type" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="Task" BaseType="FinanceManagementModel.Events">
-          <Property Name="Type" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Reccuring" Type="Boolean" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -238,6 +244,8 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Datetime" ColumnName="Datetime" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(FinanceManagementModel.Appointment)">
@@ -250,6 +258,7 @@
         <MappingFragment StoreEntitySet="Events_Task">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Reccuring" ColumnName="Reccuring" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

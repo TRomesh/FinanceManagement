@@ -33,12 +33,12 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
             this.apdate = new System.Windows.Forms.DateTimePicker();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.btnupdateapp = new System.Windows.Forms.Button();
+            this.btndeleteapp = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.apdescription = new System.Windows.Forms.TextBox();
-            this.apetype = new System.Windows.Forms.TextBox();
+            this.aptype = new System.Windows.Forms.TextBox();
             this.apname = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -48,8 +48,8 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
             this.tadate = new System.Windows.Forms.DateTimePicker();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnupdateevn = new System.Windows.Forms.Button();
+            this.btndeleteevn = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tadescription = new System.Windows.Forms.TextBox();
@@ -94,12 +94,12 @@
             // 
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.apdate);
-            this.groupBox1.Controls.Add(this.button7);
-            this.groupBox1.Controls.Add(this.button6);
+            this.groupBox1.Controls.Add(this.btnupdateapp);
+            this.groupBox1.Controls.Add(this.btndeleteapp);
             this.groupBox1.Controls.Add(this.button5);
             this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.apdescription);
-            this.groupBox1.Controls.Add(this.apetype);
+            this.groupBox1.Controls.Add(this.aptype);
             this.groupBox1.Controls.Add(this.apname);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
@@ -127,25 +127,25 @@
             this.apdate.Size = new System.Drawing.Size(200, 20);
             this.apdate.TabIndex = 10;
             // 
-            // button7
+            // btnupdateapp
             // 
-            this.button7.Location = new System.Drawing.Point(317, 113);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 9;
-            this.button7.Text = "Update";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.AppUpdate);
+            this.btnupdateapp.Location = new System.Drawing.Point(317, 113);
+            this.btnupdateapp.Name = "btnupdateapp";
+            this.btnupdateapp.Size = new System.Drawing.Size(75, 23);
+            this.btnupdateapp.TabIndex = 9;
+            this.btnupdateapp.Text = "Update";
+            this.btnupdateapp.UseVisualStyleBackColor = true;
+            this.btnupdateapp.Click += new System.EventHandler(this.AppUpdate);
             // 
-            // button6
+            // btndeleteapp
             // 
-            this.button6.Location = new System.Drawing.Point(317, 83);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 8;
-            this.button6.Text = "Delete";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.AppDelete);
+            this.btndeleteapp.Location = new System.Drawing.Point(317, 83);
+            this.btndeleteapp.Name = "btndeleteapp";
+            this.btndeleteapp.Size = new System.Drawing.Size(75, 23);
+            this.btndeleteapp.TabIndex = 8;
+            this.btndeleteapp.Text = "Delete";
+            this.btndeleteapp.UseVisualStyleBackColor = true;
+            this.btndeleteapp.Click += new System.EventHandler(this.AppDelete);
             // 
             // button5
             // 
@@ -174,12 +174,12 @@
             this.apdescription.Size = new System.Drawing.Size(149, 20);
             this.apdescription.TabIndex = 5;
             // 
-            // apetype
+            // aptype
             // 
-            this.apetype.Location = new System.Drawing.Point(83, 58);
-            this.apetype.Name = "apetype";
-            this.apetype.Size = new System.Drawing.Size(149, 20);
-            this.apetype.TabIndex = 4;
+            this.aptype.Location = new System.Drawing.Point(83, 58);
+            this.aptype.Name = "aptype";
+            this.aptype.Size = new System.Drawing.Size(149, 20);
+            this.aptype.TabIndex = 4;
             // 
             // apname
             // 
@@ -239,8 +239,8 @@
             // 
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.tadate);
-            this.groupBox2.Controls.Add(this.button8);
-            this.groupBox2.Controls.Add(this.button3);
+            this.groupBox2.Controls.Add(this.btnupdateevn);
+            this.groupBox2.Controls.Add(this.btndeleteevn);
             this.groupBox2.Controls.Add(this.button2);
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.tadescription);
@@ -272,25 +272,25 @@
             this.tadate.Size = new System.Drawing.Size(200, 20);
             this.tadate.TabIndex = 10;
             // 
-            // button8
+            // btnupdateevn
             // 
-            this.button8.Location = new System.Drawing.Point(317, 113);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 9;
-            this.button8.Text = "Update";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.TaskUpdate);
+            this.btnupdateevn.Location = new System.Drawing.Point(317, 113);
+            this.btnupdateevn.Name = "btnupdateevn";
+            this.btnupdateevn.Size = new System.Drawing.Size(75, 23);
+            this.btnupdateevn.TabIndex = 9;
+            this.btnupdateevn.Text = "Update";
+            this.btnupdateevn.UseVisualStyleBackColor = true;
+            this.btnupdateevn.Click += new System.EventHandler(this.TaskUpdate);
             // 
-            // button3
+            // btndeleteevn
             // 
-            this.button3.Location = new System.Drawing.Point(317, 83);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 8;
-            this.button3.Text = "Delete";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.TaskDelete);
+            this.btndeleteevn.Location = new System.Drawing.Point(317, 83);
+            this.btndeleteevn.Name = "btndeleteevn";
+            this.btndeleteevn.Size = new System.Drawing.Size(75, 23);
+            this.btndeleteevn.TabIndex = 8;
+            this.btndeleteevn.Text = "Delete";
+            this.btndeleteevn.UseVisualStyleBackColor = true;
+            this.btndeleteevn.Click += new System.EventHandler(this.TaskDelete);
             // 
             // button2
             // 
@@ -399,7 +399,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox apdescription;
-        private System.Windows.Forms.TextBox apetype;
+        private System.Windows.Forms.TextBox aptype;
         private System.Windows.Forms.TextBox apname;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
@@ -410,14 +410,14 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button btndeleteapp;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btndeleteevn;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button btnupdateapp;
+        private System.Windows.Forms.Button btnupdateevn;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DateTimePicker apdate;
         private System.Windows.Forms.Label label7;

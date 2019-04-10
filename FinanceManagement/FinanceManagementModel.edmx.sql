@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/06/2019 20:05:27
+-- Date Created: 04/10/2019 14:12:15
 -- Generated from EDMX file: C:\Users\Hp\Documents\work\FinanceManagement\FinanceManagement\FinanceManagementModel.edmx
 -- --------------------------------------------------
 
@@ -79,20 +79,23 @@ GO
 CREATE TABLE [dbo].[Events] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
-    [UserId] int  NOT NULL
+    [UserId] int  NOT NULL,
+    [Datetime] nvarchar(max)  NOT NULL,
+    [Description] nvarchar(max)  NOT NULL
 );
 GO
 
 -- Creating table 'Events_Appointment'
 CREATE TABLE [dbo].[Events_Appointment] (
-    [Type] int IDENTITY(1,1) NOT NULL,
+    [Type] nvarchar(max)  NOT NULL,
     [Id] int  NOT NULL
 );
 GO
 
 -- Creating table 'Events_Task'
 CREATE TABLE [dbo].[Events_Task] (
-    [Type] int IDENTITY(1,1) NOT NULL,
+    [Type] nvarchar(max)  NOT NULL,
+    [Reccuring] bit  NOT NULL,
     [Id] int  NOT NULL
 );
 GO

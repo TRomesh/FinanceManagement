@@ -257,7 +257,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::FinanceManagement.Properties.Resources.user1;
+            this.pictureBox1.Image = global::FinanceManagement.Properties.Resources.user;
             this.pictureBox1.InitialImage = global::FinanceManagement.Properties.Resources.user;
             this.pictureBox1.Location = new System.Drawing.Point(6, 9);
             this.pictureBox1.Name = "pictureBox1";

@@ -14,6 +14,7 @@ namespace FinanceManagement
     
     public partial class Task : Events
     {
-        public int Type { get; set; }
+        public string Type { get; set; }
+        public bool Reccuring { get; set; }
     }
 }

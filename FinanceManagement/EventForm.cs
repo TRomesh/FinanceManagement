@@ -14,6 +14,8 @@ namespace FinanceManagement
     {
         private string name = "";
         private int id = 0;
+        Appointment app;
+        Task tas;
 
         public EventForm()
         {
@@ -29,27 +31,27 @@ namespace FinanceManagement
 
         public void edidelbuttonApp()
         {
-            btnupdate.Enabled = false;
-            btndelete.Enabled = false;
+            btnupdateapp.Enabled = false;
+            btndeleteapp.Enabled = false;
         }
 
         public void edidelbuttonTask()
         {
-            btnupdate.Enabled = false;
-            btndelete.Enabled = false;
+            btnupdateevn.Enabled = false;
+            btndeleteevn.Enabled = false;
         }
 
         public void populateAppointments()
         {
             using (FinanceManagementEntities db = new FinanceManagementEntities())
             {
-                var contact = from p in db.Contacts
+                var contact = from p in db.Events.OfType<Appointment>()
                               select new
                               {
                                   Id = p.Id,
                                   Name = p.Name,
                                   Type = p.Type,
-                                  Emal = p.Emal,
+                                  Datetime = p.Datetime
 
                               };
 
@@ -62,13 +64,14 @@ namespace FinanceManagement
         {
             using (FinanceManagementEntities db = new FinanceManagementEntities())
             {
-                var contact = from p in db.Contacts
+                var contact = from p in db.Events.OfType<Task>()
                               select new
                               {
                                   Id = p.Id,
                                   Name = p.Name,
                                   Type = p.Type,
-                                  Emal = p.Emal,
+                                  Datetime = p.Datetime,
+                                  Reccuring = p.Reccuring
 
                               };
 
@@ -77,21 +80,22 @@ namespace FinanceManagement
             }
         }
 
-        private void ClearTask()
-        {
-            cemail.Text = cname.Text = ctype.Text = "";
-            this.edidelbuttonTask();
-        }
-
-        private void ClearApp()
-        {
-            cemail.Text = cname.Text = ctype.Text = "";
-            this.edidelbuttonApp();
-        }
-
         private void AppSave(object sender, EventArgs e)
         {
+            app = new Appointment();
+            app.Name = apname.Text.Trim();
+            app.Datetime = apdate.Text.Trim();
+            app.Type = aptype.Text.Trim();
+            app.Description = apdescription.Text.Trim();
+            app.UserId = this.id;
 
+            using (FinanceManagementEntities db = new FinanceManagementEntities())
+            {
+                db.Events.Add(app);
+                db.SaveChanges();
+            }
+
+            ClearApp();
         }
 
         private void AppCancel(object sender, EventArgs e)
@@ -111,7 +115,21 @@ namespace FinanceManagement
 
         private void TaskSave(object sender, EventArgs e)
         {
+            tas = new Task();
+            tas.Name = taname.Text.Trim();
+            tas.Datetime = tadate.Text.Trim();
+            tas.Type = tatype.Text.Trim();
+            tas.Description = tadescription.Text.Trim();
+            tas.UserId = this.id;
+            tas.Reccuring = true;
 
+            using (FinanceManagementEntities db = new FinanceManagementEntities())
+            {
+                db.Events.Add(tas);
+                db.SaveChanges();
+            }
+
+            ClearTask();
         }
 
         private void TaskCanvel(object sender, EventArgs e)
@@ -127,6 +145,18 @@ namespace FinanceManagement
         private void TaskUpdate(object sender, EventArgs e)
         {
 
+        }
+
+        private void ClearTask()
+        {
+            taname.Text = tadescription.Text = tadate.Text = "";
+            this.edidelbuttonTask();
+        }
+
+        private void ClearApp()
+        {
+            apname.Text = apdescription.Text = apdate.Text = "";
+            this.edidelbuttonApp();
         }
     }
 }
