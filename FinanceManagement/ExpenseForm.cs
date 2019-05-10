@@ -17,7 +17,8 @@ namespace FinanceManagement
 {
     public partial class ExpenseForm : Form
     {
-        private Thread workerThread = null;
+        private static readonly Object XmlLocker = new Object();
+        private Thread workerThread;
         private bool stopProcess = false;
         public event sendMessageExpense sendExpense;
         private ComboBox[] combo1;  // Array of comboboxes
@@ -30,7 +31,7 @@ namespace FinanceManagement
         private int max_row = 5;
         private int top_row = 0;
         private int empty_count = 0;
-        string filepath = Environment.CurrentDirectory + @"Expense.xml";
+        string filepath = Path.Combine(Environment.CurrentDirectory, "Expense.xml");
         public ExpenseForm()
         {
             InitializeComponent();
@@ -48,49 +49,52 @@ namespace FinanceManagement
         public void  WriteToXML(object param)
         {
             Expense exp = (Expense)param;
-            if (!File.Exists(filepath))
+
+            lock (XmlLocker)
             {
-                XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
-                xmlWriterSettings.Indent = true;
-                xmlWriterSettings.NewLineOnAttributes = true;
-                using (XmlWriter xmlWriter = XmlWriter.Create(filepath, xmlWriterSettings))
+                if (!File.Exists(filepath))
                 {
-                    xmlWriter.WriteStartDocument();
-                    xmlWriter.WriteStartElement("Expenses");
+                    XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
+                    xmlWriterSettings.Indent = true;
+                    xmlWriterSettings.NewLineOnAttributes = true;
+                    using (XmlWriter xmlWriter = XmlWriter.Create(filepath, xmlWriterSettings))
+                    {
+                        xmlWriter.WriteStartDocument();
+                        xmlWriter.WriteStartElement("Expenses");
 
-                    xmlWriter.WriteStartElement("Expense");
-                    xmlWriter.WriteElementString("Id", exp.Id.ToString());
-                    xmlWriter.WriteElementString("Amount", exp.Amount.ToString());
-                    xmlWriter.WriteElementString("Contact", exp.Contact);
-                    xmlWriter.WriteElementString("Description", exp.Description);
-                    xmlWriter.WriteElementString("Datetime", exp.Datetime);
-                    xmlWriter.WriteEndElement();
+                        xmlWriter.WriteStartElement("Expense");
+                        xmlWriter.WriteElementString("Id", exp.Id.ToString());
+                        xmlWriter.WriteElementString("Amount", exp.Amount.ToString());
+                        xmlWriter.WriteElementString("Contact", exp.Contact);
+                        xmlWriter.WriteElementString("Description", exp.Description);
+                        xmlWriter.WriteElementString("Datetime", exp.Datetime);
+                        xmlWriter.WriteEndElement();
 
-                    xmlWriter.WriteEndElement();
-                    xmlWriter.WriteEndDocument();
-                    xmlWriter.Flush();
-                    xmlWriter.Close();
+                        xmlWriter.WriteEndElement();
+                        xmlWriter.WriteEndDocument();
+                        xmlWriter.Flush();
+                        xmlWriter.Close();
+                        this.sendExpense(true);
+                    }
+                }
+                else
+                {
+                    XDocument xDocument = XDocument.Load(filepath);
+                    XElement root = xDocument.Element("Expenses");
+                    IEnumerable<XElement> rows = root.Descendants("Expense");
+                    XElement firstRow = rows.First();
+                    firstRow.AddBeforeSelf(
+                       new XElement("Expense",
+                       new XElement("Id", exp.Id.ToString()),
+                       new XElement("Amount", exp.Amount.ToString()),
+                       new XElement("Contact", exp.Contact),
+                       new XElement("Description", exp.Description),
+                        new XElement("Datetime", exp.Datetime)
+                       ));
+                    xDocument.Save(filepath);
                     this.sendExpense(true);
                 }
             }
-            else
-            {
-                XDocument xDocument = XDocument.Load(filepath);
-                XElement root = xDocument.Element("Expenses");
-                IEnumerable<XElement> rows = root.Descendants("Expense");
-                XElement firstRow = rows.First();
-                firstRow.AddBeforeSelf(
-                   new XElement("Expense",
-                   new XElement("Id", exp.Id.ToString()),
-                   new XElement("Amount", exp.Amount.ToString()),
-                   new XElement("Contact", exp.Contact),
-                   new XElement("Description", exp.Description),
-                    new XElement("Datetime", exp.Datetime)
-                   ));
-                xDocument.Save(filepath);
-                this.sendExpense(true);
-            }
-
         }
 
         private void combo1_rtext1_text1_array()

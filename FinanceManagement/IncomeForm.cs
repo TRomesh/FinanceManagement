@@ -18,6 +18,7 @@ namespace FinanceManagement
 {
     public partial class IncomeForm : Form
     {
+        private static readonly Object XmlLocker = new Object();
         private Thread workerThread = null;
         private bool stopProcess = false;
         private delegate void UpdateStatusDelegate();
@@ -52,48 +53,51 @@ namespace FinanceManagement
         {
             Income inc = (Income)param;
 
-            if (!File.Exists(filepath))
+            lock (XmlLocker)
             {
-                XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
-                xmlWriterSettings.Indent = true;
-                xmlWriterSettings.NewLineOnAttributes = true;
-                using (XmlWriter xmlWriter = XmlWriter.Create(filepath, xmlWriterSettings))
+
+                if (!File.Exists(filepath))
                 {
-                    xmlWriter.WriteStartDocument();
-                    xmlWriter.WriteStartElement("Incomes");
+                    XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
+                    xmlWriterSettings.Indent = true;
+                    xmlWriterSettings.NewLineOnAttributes = true;
+                    using (XmlWriter xmlWriter = XmlWriter.Create(filepath, xmlWriterSettings))
+                    {
+                        xmlWriter.WriteStartDocument();
+                        xmlWriter.WriteStartElement("Incomes");
 
-                    xmlWriter.WriteStartElement("Income");
-                    xmlWriter.WriteElementString("Id", inc.Id.ToString());
-                    xmlWriter.WriteElementString("Amount", inc.Amount.ToString());
-                    xmlWriter.WriteElementString("Contact", inc.Contact);
-                    xmlWriter.WriteElementString("Description", inc.Description);
-                    xmlWriter.WriteElementString("Datetime", inc.Datetime);
-                    xmlWriter.WriteEndElement();
+                        xmlWriter.WriteStartElement("Income");
+                        xmlWriter.WriteElementString("Id", inc.Id.ToString());
+                        xmlWriter.WriteElementString("Amount", inc.Amount.ToString());
+                        xmlWriter.WriteElementString("Contact", inc.Contact);
+                        xmlWriter.WriteElementString("Description", inc.Description);
+                        xmlWriter.WriteElementString("Datetime", inc.Datetime);
+                        xmlWriter.WriteEndElement();
 
-                    xmlWriter.WriteEndElement();
-                    xmlWriter.WriteEndDocument();
-                    xmlWriter.Flush();
-                    xmlWriter.Close();
+                        xmlWriter.WriteEndElement();
+                        xmlWriter.WriteEndDocument();
+                        xmlWriter.Flush();
+                        xmlWriter.Close();
+                    }
+                }
+                else
+                {
+                    XDocument xDocument = XDocument.Load(filepath);
+                    XElement root = xDocument.Element("Incomes");
+                    IEnumerable<XElement> rows = root.Descendants("Income");
+                    XElement firstRow = rows.First();
+                    firstRow.AddBeforeSelf(
+                       new XElement("Income",
+                       new XElement("Id", inc.Id.ToString()),
+                       new XElement("Amount", inc.Amount.ToString()),
+                       new XElement("Contact", inc.Contact),
+                       new XElement("Description", inc.Description),
+                        new XElement("Datetime", inc.Datetime)
+                     ));
+                    xDocument.Save(filepath);
+                    this.sendIncome(true);
                 }
             }
-            else
-            {
-                XDocument xDocument = XDocument.Load(filepath);
-                XElement root = xDocument.Element("Incomes");
-                IEnumerable<XElement> rows = root.Descendants("Income");
-                XElement firstRow = rows.First();
-                firstRow.AddBeforeSelf(
-                   new XElement("Income",
-                   new XElement("Id", inc.Id.ToString()),
-                   new XElement("Amount", inc.Amount.ToString()),
-                   new XElement("Contact", inc.Contact),
-                   new XElement("Description", inc.Description),
-                    new XElement("Datetime", inc.Datetime)
-                   ));
-                xDocument.Save(filepath);
-                this.sendIncome(true);
-            }
-
         }
 
 
