@@ -1,18 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
-using System.Xml.Serialization;
-using System.Xml.XPath;
 
 namespace FinanceManagement
 {
@@ -33,7 +27,7 @@ namespace FinanceManagement
         private int empty_count = 0;
         private string name = "";
         private int id = 0;
-        string filepath = Environment.CurrentDirectory + @"Income.xml";
+        string filepath = Path.Combine(Environment.CurrentDirectory, "Income.xml");
 
         public IncomeForm()
         {
@@ -145,7 +139,7 @@ namespace FinanceManagement
             else
             {
                 count++;
-                
+
                 combo1[count] = new ComboBox();
                 for (int i = 1; i <= 5; i++)
                     combo1[count].Items.Add("Item " + i);
@@ -209,13 +203,25 @@ namespace FinanceManagement
 
             if (count > 0)
             {
+                if (amount.Text != "" || contacts.SelectedItem.ToString() != null || description.Text != "")
+                {
+                    inc = new Income();
+                    inc.Id = new Random().Next(1, 10000);
+                    inc.Amount = float.Parse(amount.Text.ToString());
+                    inc.Contact = contacts.SelectedItem.ToString();
+                    inc.Description = description.Text.ToString();
+                    inc.Datetime = DateTime.Now.ToString("MM-dd-yyyy");
+                    workerThread = new Thread(new ParameterizedThreadStart(WriteToXML));
+                    workerThread.Start(inc);
+
+                }
                 for (int i = 0; i <= count; i++)
                 {
                     if (text1[count].Text == "" || text1[count].Text == null || combo1[count].SelectedItem == null || rtext1[count].Text == "" || rtext1[count].Text == null)
                     {
                         empty_count++;
                     }
-                    if(text1[count].Text != "" || combo1[count].SelectedItem != null || rtext1[count].Text != "")
+                    if (text1[count].Text != "" || combo1[count].SelectedItem != null || rtext1[count].Text != "")
                     {
                         inc = new Income();
                         inc.Id = new Random().Next(1, 10000);
@@ -245,14 +251,16 @@ namespace FinanceManagement
                     inc.Datetime = DateTime.Now.ToString("MM-dd-yyyy");
                     workerThread = new Thread(new ParameterizedThreadStart(WriteToXML));
                     workerThread.Start(inc);
+
                 }
                 else
                     MessageBox.Show("Empty Fields detected ! Please fill or select data for all fields");
+            combo1_rtext1_text1_array();
         }
 
         private void save()
         {
-           
+
 
         }
 
@@ -263,36 +271,39 @@ namespace FinanceManagement
 
         private void button5_Click(object sender, EventArgs e)
         {
-            //DataSet dataSet = new DataSet();
-            //dataSet.ReadXml(filepath);
-            //dataGridView1.DataSource = dataSet.Tables[0];
-            // WriteToXML();
+
             //delete();
             update();
         }
 
         public void delete()
         {
-            XmlDocument xDoc = new XmlDocument();
-            xDoc.Load(filepath);
-            foreach (XmlNode xNode in xDoc.SelectNodes("Incomes/Income"))
-                if (xNode.SelectSingleNode("Amount").InnerText == "101") xNode.ParentNode.RemoveChild(xNode);
-            xDoc.Save(filepath);
+            lock (XmlLocker)
+            {
+                XmlDocument xDoc = new XmlDocument();
+                xDoc.Load(filepath);
+                foreach (XmlNode xNode in xDoc.SelectNodes("Incomes/Income"))
+                    if (xNode.SelectSingleNode("Amount").InnerText == "101") xNode.ParentNode.RemoveChild(xNode);
+                xDoc.Save(filepath);
+            }
         }
 
         public void update()
         {
-            XmlDocument xDoc = new XmlDocument();
-            xDoc.Load(filepath);
-            foreach (XmlNode xNode in xDoc.SelectNodes("Incomes/Income"))
-                if (xNode.SelectSingleNode("Amount").InnerText == "111")
-                {
-                    XmlDocument newxNode = new XmlDocument();
-                    newxNode.CreateNode("Incomes/Income","Amount", "222");
-                    xNode.ParentNode.ReplaceChild(newxNode, xNode);
-                }
-                    
-            xDoc.Save(filepath);
+            lock (XmlLocker)
+            {
+                XmlDocument xDoc = new XmlDocument();
+                xDoc.Load(filepath);
+                foreach (XmlNode xNode in xDoc.SelectNodes("Incomes/Income"))
+                    if (xNode.SelectSingleNode("Amount").InnerText == "111")
+                    {
+                        XmlDocument newxNode = new XmlDocument();
+                        newxNode.CreateNode("Incomes/Income", "Amount", "222");
+                        xNode.ParentNode.ReplaceChild(newxNode, xNode);
+                    }
+
+                xDoc.Save(filepath);
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

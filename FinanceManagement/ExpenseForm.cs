@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace FinanceManagement
 {
@@ -46,7 +41,7 @@ namespace FinanceManagement
             this.id = id;
         }
 
-        public void  WriteToXML(object param)
+        public void WriteToXML(object param)
         {
             Expense exp = (Expense)param;
 
@@ -130,125 +125,137 @@ namespace FinanceManagement
                 }
             }
 
-            
+
 
         }
 
 
         private void add_row_Click(object sender, EventArgs e)
         {
-        if (count == max_row - 1)
-        {
-            MessageBox.Show("Maximum of 5 rows can be added");
-            return;
+            if (count == max_row - 1)
+            {
+                MessageBox.Show("Maximum of 5 rows can be added");
+                return;
+            }
+            else
+            {
+                count++;
+
+                combo1[count] = new ComboBox();
+                for (int i = 1; i <= 5; i++)
+                    combo1[count].Items.Add("Item " + i);
+                rtext1[count] = new RichTextBox();
+                text1[count] = new TextBox();
+                groupBox[count] = new GroupBox();
+
+                this.combo1[count].Location = new System.Drawing.Point(10, 20);
+                this.combo1[count].Size = new System.Drawing.Size(150, 20);
+                this.combo1[count].TabIndex = 1;
+
+                this.text1[count].Location = new System.Drawing.Point(185, 20);
+                this.text1[count].Size = new System.Drawing.Size(150, 20);
+                this.text1[count].TabIndex = 2;
+
+                this.rtext1[count].Location = new System.Drawing.Point(360, 20);
+                this.rtext1[count].Size = new System.Drawing.Size(145, 20);
+                this.rtext1[count].TabIndex = 3;
+
+                this.groupBox[count].Controls.Add(this.combo1[count]);
+                this.groupBox[count].Controls.Add(this.text1[count]);
+                this.groupBox[count].Controls.Add(this.rtext1[count]);
+                this.groupBox[count].Location = new System.Drawing.Point(10, top_row);
+                this.groupBox[count].Size = new System.Drawing.Size(518, 56);
+                this.groupBox[count].TabIndex = 7;
+                this.groupBox[count].TabStop = false;
+
+                this.items_panel.Controls.Add(groupBox[count]);
+                top_row = 56 + top_row;
+            }
         }
-        else
-        {
-            count++;
-
-            combo1[count] = new ComboBox();
-            for (int i = 1; i <= 5; i++)
-                combo1[count].Items.Add("Item " + i);
-            rtext1[count] = new RichTextBox();
-            text1[count] = new TextBox();
-            groupBox[count] = new GroupBox();
-
-            this.combo1[count].Location = new System.Drawing.Point(10, 20);
-            this.combo1[count].Size = new System.Drawing.Size(150, 20);
-            this.combo1[count].TabIndex = 1;
-
-            this.text1[count].Location = new System.Drawing.Point(185, 20);
-            this.text1[count].Size = new System.Drawing.Size(150, 20);
-            this.text1[count].TabIndex = 2;
-
-            this.rtext1[count].Location = new System.Drawing.Point(360, 20);
-            this.rtext1[count].Size = new System.Drawing.Size(145, 20);
-            this.rtext1[count].TabIndex = 3;
-
-            this.groupBox[count].Controls.Add(this.combo1[count]);
-            this.groupBox[count].Controls.Add(this.text1[count]);
-            this.groupBox[count].Controls.Add(this.rtext1[count]);
-            this.groupBox[count].Location = new System.Drawing.Point(10, top_row);
-            this.groupBox[count].Size = new System.Drawing.Size(518, 56);
-            this.groupBox[count].TabIndex = 7;
-            this.groupBox[count].TabStop = false;
-
-            this.items_panel.Controls.Add(groupBox[count]);
-            top_row = 56 + top_row;
-        }
-    }
 
         private void remove_row_Click(object sender, EventArgs e)
         {
-        if (count > -1)  // Deleting one row at a time
-        {
-            this.items_panel.Controls.Remove(combo1[count]);
-            this.items_panel.Controls.Remove(rtext1[count]);
-            this.items_panel.Controls.Remove(text1[count]);
-            count--;
+            if (count > -1)  // Deleting one row at a time
+            {
+                this.items_panel.Controls.Remove(combo1[count]);
+                this.items_panel.Controls.Remove(rtext1[count]);
+                this.items_panel.Controls.Remove(text1[count]);
+                count--;
+            }
         }
-    }
 
         private void reset_Click(object sender, EventArgs e)
         {
-        amount.ResetText();
-        contacts.ResetText();
-        description.ResetText();
-        for (int i = count; i > -1; i--)
-        {
-            this.items_panel.Controls.Remove(combo1[i]);
-            this.items_panel.Controls.Remove(rtext1[i]);
-            this.items_panel.Controls.Remove(text1[i]);
+            amount.ResetText();
+            contacts.ResetText();
+            description.ResetText();
+            for (int i = count; i > -1; i--)
+            {
+                this.items_panel.Controls.Remove(combo1[i]);
+                this.items_panel.Controls.Remove(rtext1[i]);
+                this.items_panel.Controls.Remove(text1[i]);
+            }
+            count = 0;
         }
-        count = 0;
-    }
 
         private void submit_Click(object sender, EventArgs e)
         {
-        Expense exp = null;
+            Expense exp = null;
 
-        if (count > 0)
-        {
-            for (int i = 0; i <= count; i++)
+            if (count > 0)
             {
-                if (text1[count].Text == "" || text1[count].Text == null || combo1[count].SelectedItem == null || rtext1[count].Text == "" || rtext1[count].Text == null)
-                {
-                    empty_count++;
-                }
-                if (text1[count].Text != "" || combo1[count].SelectedItem != null || rtext1[count].Text != "")
+                if (amount.Text != "" || contacts.SelectedItem.ToString() != null || description.Text != "")
                 {
                     exp = new Expense();
                     exp.Id = new Random().Next(1, 10000);
-                    exp.Amount = float.Parse(text1[count].Text);
-                    exp.Contact = combo1[count].SelectedItem.ToString();
-                    exp.Description = rtext1[count].Text.ToString();
+                    exp.Amount = float.Parse(amount.Text.ToString());
+                    exp.Contact = contacts.SelectedItem.ToString();
+                    exp.Description = description.Text.ToString();
                     exp.Datetime = DateTime.Now.ToString("MM-dd-yyyy");
+                    workerThread = new Thread(new ParameterizedThreadStart(WriteToXML));
+                    workerThread.Start(exp);
+                }
+                for (int i = 0; i <= count; i++)
+                {
+                    if (text1[count].Text == "" || text1[count].Text == null || combo1[count].SelectedItem == null || rtext1[count].Text == "" || rtext1[count].Text == null)
+                    {
+                        empty_count++;
+                    }
+                    if (text1[count].Text != "" || combo1[count].SelectedItem != null || rtext1[count].Text != "")
+                    {
+                        exp = new Expense();
+                        exp.Id = new Random().Next(1, 10000);
+                        exp.Amount = float.Parse(text1[count].Text);
+                        exp.Contact = combo1[count].SelectedItem.ToString();
+                        exp.Description = rtext1[count].Text.ToString();
+                        exp.Datetime = DateTime.Now.ToString("MM-dd-yyyy");
                         workerThread = new Thread(new ParameterizedThreadStart(WriteToXML));
                         workerThread.Start(exp);
                     }
 
+                }
+                if (empty_count > 0)
+                {
+                    MessageBox.Show("Empty Fields detected ! Please fill or select data for all fields");
+                    empty_count = 0;
+                }
             }
-            if (empty_count > 0)
-            {
-                MessageBox.Show("Empty Fields detected ! Please fill or select data for all fields");
-                empty_count = 0;
-            }
-        }
-        else if (count == 0)
-            if (amount.Text != "" || contacts.SelectedItem.ToString() != null || description.Text != "")
-            {
-                exp = new Expense();
-                exp.Id = new Random().Next(1, 10000);
-                exp.Amount = float.Parse(amount.Text.ToString());
-                exp.Contact = contacts.SelectedItem.ToString();
-                exp.Description = description.Text.ToString();
-                exp.Datetime = DateTime.Now.ToString("MM-dd-yyyy");
+            else if (count == 0)
+                if (amount.Text != "" || contacts.SelectedItem.ToString() != null || description.Text != "")
+                {
+                    exp = new Expense();
+                    exp.Id = new Random().Next(1, 10000);
+                    exp.Amount = float.Parse(amount.Text.ToString());
+                    exp.Contact = contacts.SelectedItem.ToString();
+                    exp.Description = description.Text.ToString();
+                    exp.Datetime = DateTime.Now.ToString("MM-dd-yyyy");
                     workerThread = new Thread(new ParameterizedThreadStart(WriteToXML));
                     workerThread.Start(exp);
                 }
-            else
-                MessageBox.Show("Empty Fields detected ! Please fill or select data for all fields");
-    }
+                else
+                    MessageBox.Show("Empty Fields detected ! Please fill or select data for all fields");
+            combo1_rtext1_text1_array();
+        }
 
         private void cancel_Click(object sender, EventArgs e)
         {

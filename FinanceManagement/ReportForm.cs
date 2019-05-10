@@ -20,15 +20,18 @@ namespace FinanceManagement
     {
         private string name = "";
         private int id = 0;
-        string filepath = Environment.CurrentDirectory + @"Income_"+ DateTime.Now.ToString("MM-dd-yyyy") + ".pdf";
+        string filepath = Path.Combine(Environment.CurrentDirectory, "Report_" + DateTime.Now.ToString("MM-dd-yyyy") + ".pdf");
+        List<Income> IncList;
+        List<Expense> ExpList;
         List<Income> income;
         List<Expense> expense;
-        string incomefilepath = Environment.CurrentDirectory + @"Income.xml";
-        string expensefilepath = Environment.CurrentDirectory + @"Expense.xml";
+        string incomefilepath = Path.Combine(Environment.CurrentDirectory, "Income.xml");
+        string expensefilepath = Path.Combine(Environment.CurrentDirectory, "Expense.xml");
 
         public ReportForm()
         {
             InitializeComponent();
+            LoadMXL();
         }
 
         public ReportForm(string name, int id)
@@ -36,6 +39,7 @@ namespace FinanceManagement
             InitializeComponent();
             this.name = name;
             this.id = id;
+            LoadMXL();
         }
 
         public void LoadMXL()
@@ -43,7 +47,7 @@ namespace FinanceManagement
             if (File.Exists(incomefilepath))
             {
                 XDocument lbSrc = XDocument.Load(incomefilepath);
-                List<Income> IncList = new List<Income>();
+                 IncList = new List<Income>();
 
                 foreach (XElement exp in lbSrc.Descendants("Income"))
                 {
@@ -68,7 +72,7 @@ namespace FinanceManagement
             if (File.Exists(expensefilepath))
             {
                 XDocument lbSrc = XDocument.Load(expensefilepath);
-                List<Expense> ExpList = new List<Expense>();
+                 ExpList = new List<Expense>();
 
                 foreach (XElement exp in lbSrc.Descendants("Expense"))
                 {
@@ -161,33 +165,88 @@ namespace FinanceManagement
 
             //New Row Added
 
-            PdfPCell cell31 = new PdfPCell();
+            foreach (var income in IncList)
+            {
 
-            cell31.AddElement(new Paragraph("Safe"));
+                PdfPCell cell31 = new PdfPCell();
 
-            cell31.FixedHeight = 300.0f;
+                cell31.AddElement(new Paragraph(income.Description));
 
-            PdfPCell cell32 = new PdfPCell();
 
-            cell32.AddElement(new Paragraph("2"));
 
-            cell32.FixedHeight = 300.0f;
+                PdfPCell cell32 = new PdfPCell();
 
-            PdfPCell cell33 = new PdfPCell();
+                cell32.AddElement(new Paragraph(income.Datetime));
 
-            cell33.AddElement(new Paragraph("20.00 * " + "2" + " = " + (20 * Convert.ToInt32("2")) + ".00"));
+       
 
-            cell33.FixedHeight = 300.0f;
+                PdfPCell cell33 = new PdfPCell();
 
-            table2.AddCell(cell31);
+                cell33.AddElement(new Paragraph("Income"));
 
-            table2.AddCell(cell32);
 
-            table2.AddCell(cell31);
 
-            table2.AddCell(cell32);
+                PdfPCell cell34 = new PdfPCell();
 
-            table2.AddCell(cell33);
+                cell34.AddElement(new Paragraph(income.Contact));
+
+                
+
+                PdfPCell cell35 = new PdfPCell();
+
+                cell35.AddElement(new Paragraph(income.Amount.ToString()));
+
+               
+
+                table2.AddCell(cell31);
+                table2.AddCell(cell32);
+                table2.AddCell(cell33);
+                table2.AddCell(cell34);
+                table2.AddCell(cell35);
+
+            }
+
+            foreach (var expense in ExpList)
+            {
+
+                PdfPCell cell41 = new PdfPCell();
+
+                cell41.AddElement(new Paragraph(expense.Description));
+
+
+
+                PdfPCell cell42 = new PdfPCell();
+
+                cell42.AddElement(new Paragraph(expense.Datetime));
+
+
+
+                PdfPCell cell43 = new PdfPCell();
+
+                cell43.AddElement(new Paragraph("Expense"));
+
+
+
+                PdfPCell cell44 = new PdfPCell();
+
+                cell44.AddElement(new Paragraph(expense.Contact));
+
+
+
+                PdfPCell cell45 = new PdfPCell();
+
+                cell45.AddElement(new Paragraph(expense.Amount.ToString()));
+
+
+
+                table2.AddCell(cell41);
+                table2.AddCell(cell42);
+                table2.AddCell(cell43);
+                table2.AddCell(cell44);
+                table2.AddCell(cell45);
+
+            }
+
 
 
             PdfPCell cell2A = new PdfPCell(table2);
@@ -196,22 +255,22 @@ namespace FinanceManagement
 
             table1.AddCell(cell2A);
 
-            PdfPCell cell41 = new PdfPCell();
+            PdfPCell cell51 = new PdfPCell();
 
-            cell41.AddElement(new Paragraph("Name : " + this.name));
+            cell51.AddElement(new Paragraph("Name : " + this.name));
 
-            cell41.VerticalAlignment = Element.ALIGN_LEFT;
+            cell51.VerticalAlignment = Element.ALIGN_LEFT;
 
-            PdfPCell cell42 = new PdfPCell();
+            PdfPCell cell52 = new PdfPCell();
 
-            cell42.AddElement(new Paragraph("Balance : " + "3993"));
+            cell52.AddElement(new Paragraph("Balance : " + "3993"));
 
-            cell42.VerticalAlignment = Element.ALIGN_RIGHT;
+            cell52.VerticalAlignment = Element.ALIGN_RIGHT;
 
 
-            table1.AddCell(cell41);
+            table1.AddCell(cell51);
 
-            table1.AddCell(cell42);
+            table1.AddCell(cell52);
 
 
             doc.Add(table1);

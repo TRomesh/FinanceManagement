@@ -74,7 +74,7 @@ namespace FinanceManagement
                 db.Contacts.Add(contact);
                 db.SaveChanges();
             }
-
+            populateContacts();
             Clear();
 
         }
