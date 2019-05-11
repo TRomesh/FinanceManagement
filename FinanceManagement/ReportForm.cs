@@ -44,6 +44,7 @@ namespace FinanceManagement
 
         public void LoadMXL()
         {
+            comboBox1.Items.Add("Weekly");
             if (File.Exists(incomefilepath))
             {
                 XDocument lbSrc = XDocument.Load(incomefilepath);
