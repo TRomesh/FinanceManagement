@@ -14,8 +14,10 @@ namespace FinanceManagement
     {
         private string name = "";
         private int id = 0;
+        Events events;
         Appointment app;
         Task tas;
+        User user;
 
         public EventForm()
         {
@@ -27,6 +29,15 @@ namespace FinanceManagement
             InitializeComponent();
             this.name = name;
             this.id = id;
+            getUser(this.id);
+        }
+
+        public void getUser(int id)
+        {
+            using (FinanceManagementEntities db = new FinanceManagementEntities())
+            {
+                this.user = db.Users.First(u => u.Id == id);
+            }
         }
 
         public void edidelbuttonApp()
@@ -82,16 +93,19 @@ namespace FinanceManagement
 
         private void AppSave(object sender, EventArgs e)
         {
+            //events = new Events();
             app = new Appointment();
             app.Name = apname.Text.Trim();
             app.Datetime = apdate.Text.Trim();
             app.Type = aptype.Text.Trim();
             app.Description = apdescription.Text.Trim();
             app.UserId = this.id;
+            app.User = this.user;
+            events = app;
 
             using (FinanceManagementEntities db = new FinanceManagementEntities())
             {
-                db.Events.Add(app);
+                db.Events.Add(events);
                 db.SaveChanges();
             }
 

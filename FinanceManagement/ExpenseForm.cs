@@ -26,6 +26,7 @@ namespace FinanceManagement
         private int max_row = 5;
         private int top_row = 0;
         private int empty_count = 0;
+        List<Contact> contact;
         string filepath = Path.Combine(Environment.CurrentDirectory, "Expense.xml");
         public ExpenseForm()
         {
@@ -36,9 +37,18 @@ namespace FinanceManagement
         public ExpenseForm(string name, int id)
         {
             InitializeComponent();
-            combo1_rtext1_text1_array();    // declaring array for new row addition
+            LoadContacts();
             this.name = name;
             this.id = id;
+            combo1_rtext1_text1_array(); // declaring array for new row addition
+        }
+
+        public void LoadContacts()
+        {
+            using (FinanceManagementEntities db = new FinanceManagementEntities())
+            {
+               this.contact = db.Contacts.ToList();
+            }
         }
 
         public void WriteToXML(object param)
@@ -99,8 +109,11 @@ namespace FinanceManagement
             text1 = new TextBox[max_row];
             groupBox = new GroupBox[max_row];
             items_panel.AutoScroll = true;
-            for (int i = 1; i <= 5; i++)
-                contacts.Items.Add("Item " + i);
+
+            foreach (var cnt in contact)
+            {
+                contacts.Items.Add(cnt.Name);
+            }
 
             if (File.Exists(filepath))
             {
@@ -142,8 +155,11 @@ namespace FinanceManagement
                 count++;
 
                 combo1[count] = new ComboBox();
-                for (int i = 1; i <= 5; i++)
-                    combo1[count].Items.Add("Item " + i);
+
+                foreach (var cnt in contact) {
+                    combo1[count].Items.Add(cnt.Name);
+                }
+
                 rtext1[count] = new RichTextBox();
                 text1[count] = new TextBox();
                 groupBox[count] = new GroupBox();
@@ -215,7 +231,7 @@ namespace FinanceManagement
                     workerThread = new Thread(new ParameterizedThreadStart(WriteToXML));
                     workerThread.Start(exp);
                 }
-                for (int i = 0; i <= count; i++)
+                for (int i = 0; i < count; i++)
                 {
                     if (text1[count].Text == "" || text1[count].Text == null || combo1[count].SelectedItem == null || rtext1[count].Text == "" || rtext1[count].Text == null)
                     {
